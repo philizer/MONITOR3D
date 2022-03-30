@@ -1,0 +1,157 @@
+<h1>MONITOR3D Dashboard</h1>
+<main id="dashboard">
+
+    <form id="fileForm" method="POST" enctype="multipart/form-data">
+        <input id="fileinput" type="file" name="file">
+        <button type="submit" role="button">send</button>
+    </form>
+
+    <div class="form">
+        <select id="commandList" name="command">
+      <option value="FLUSH_Q_RESET">FLUSH_Q_RESET</option>
+      <option value="SET_CURRENT_PRINT">SET_CURRENT_PRINT</option>
+      <option value="CANCEL_PRINT">CANCEL_PRINT</option>
+      <option value="CANCEL_2PRINT">CANCEL_2PRINT</option>
+      <option value="CANCEL_SD_PRINT">CANCEL_SD_PRINT</option>
+      <option value="EMERGENCY_STOP">EMERGENCY_STOP</option>
+      <option value="PAUSE_PRINT">PAUSE_PRINT</option>
+      <option value="RESUME_PRINT">RESUME_PRINT</option>
+      <option value="GET_TEMP">GET_TEMP</option>
+      <option value="AUTO_HOME">AUTO_HOME</option>
+      <option value="PAUSE_CHANGEF">PAUSE_CHANGEF</option>
+      <option value="PREHEAT_PLA">PREHEAT_PLA</option>
+      <option value="COOLDOWN">COOLDOWN</option>
+      <option value="MOVE_X1">MOVE_X1</option>
+      <option value="MOVE_X10">MOVE_X10</option>
+      <option value="MOVE_X_1">MOVE_X_1</option>
+      <option value="MOVE_X_10">MOVE_X_10</option>
+      <option value="MOVE_Y1">MOVE_Y1</option>
+      <option value="MOVE_Y10">MOVE_Y10</option>
+      <option value="MOVE_Y_1">MOVE_Y_1</option>
+      <option value="MOVE_Y_10">MOVE_Y_10</option>
+      <option value="MOVE_Z1">MOVE_Z1</option>
+      <option value="MOVE_Z10">MOVE_Z10</option>
+      <option value="MOVE_Z_1">MOVE_Z_1</option>
+      <option value="MOVE_Z_10">MOVE_Z_10</option>
+    </select>
+        <button onclick="commandPost()">send</button>
+    </div>
+
+    <div class="form">
+        <button onclick="advancement()">start watching progress</button>
+        <div>
+            <h3>PROGRESS: <span id="advancementValue"></span></h3>
+        </div>
+    </div>
+
+    <div class="form">
+        <button onclick="position()">start watching position</button>
+        <div>
+            <h3>COORDINATES: <span id="positionValue"></span></h3>
+        </div>
+    </div>
+
+</main>
+
+<script>
+    const delay = 10000 // interval in ms
+
+    function advancement() {
+        const advancementValue = document.getElementById('advancementValue')
+        let interval;
+
+        if (interval === undefined) {
+            interval = setInterval(async() => {
+                // const response = await fetch('http://127.0.0.1:8080/advancement', {
+                const response = await fetch('http://127.0.0.1:8000/advancement', {
+                    method: 'GET'
+                })
+                const data = (await response.json())
+                advancementValue.innerHTML = `${data.progress}%`
+            }, delay);
+        }
+    }
+
+    function position() {
+        const positionValue = document.getElementById('positionValue')
+        let interval;
+
+        if (interval === undefined) {
+            interval = setInterval(async() => {
+                const response = await fetch('http://127.0.0.1:8000/position', {
+                    method: 'GET'
+                })
+                const data = (await response.json())
+                    ///x en "" ou pas ? wtf
+                positionValue.innerHTML = `X : ${data.x} | Y: ${data.y}, | Z : ${data.z}`
+            }, delay);
+        }
+    }
+
+    async function commandPost() {
+        // e.preventDefault()
+        const commandInput = document.getElementById('commandList')
+
+        let url = "http://127.0.0.1:8000/cmd";
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                //console.log(JSON.parse(xhr.responseText).log);
+                console.log((xhr.responseText).log);
+            }
+        };
+
+        let data = {
+            command: commandInput.value
+        };
+        // let data = commandInput.value
+        console.log("data" + data)
+        const response = xhr.send(JSON.stringify(data));
+        //const response = xhr.send(String(data));
+    }
+
+    const fileinput = document.getElementById('fileinput')
+    console.log(fileinput)
+
+    const url = "http://127.0.0.1:8000/uploadGcode";
+    const form = document.getElementById('fileForm')
+    console.log(form)
+    form.addEventListener('submit', async(e) => {
+        // disable default action
+        e.preventDefault();
+
+        const files = document.querySelector('[name=file]').files;
+        console.log(files)
+        const formData = new FormData();
+        formData.append('file', files[0]); //gcode ??? c le file ?? why binary ? 
+
+        // post form data
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = 'json';
+
+        // log response
+        xhr.onload = () => {
+            console.log(xhr.response);
+        };
+        // create and send the reqeust
+        xhr.open('POST', url);
+        xhr.send(await formData);
+    });
+</script>
+
+
+<style>
+    form,
+    .form {
+        border: 1px solid black;
+        margin: 20px;
+        padding: 20px;
+        width: 30vw;
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
