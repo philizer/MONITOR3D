@@ -143,6 +143,7 @@ class PrinterManager:
             self.sendGcode('G1 Z15')
             self.sendGcode('G90 Z ')
 
+            self.qCmd.put(PrinterCommand.COOLDOWN)    
             self.current_print = None
             return True
 
@@ -263,12 +264,14 @@ class PrinterManager:
                         elif i % 10 == 0:
                             self.sendGcode('M114')
                     else:
-                        time.sleep(1)
+                        # time.sleep(1)
                         if j % 2 == 0:
                             self.sendGcode('M105')
+                            time.sleep(1)
                             j += 1
                         else:
                             self.sendGcode('M114')
+                            time.sleep(1)
                             j += 1
 
                     cmd = self.get_cmd()
