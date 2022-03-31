@@ -14,5 +14,5 @@ COPY src /app/src
 WORKDIR /app/src
 
 
-CMD [ "python3" ,"-m" ,"uvicorn", "main:app" , "--reload", "--host=0.0.0.0"]
+CMD [ "python3","-u" ,"-m" ,"uvicorn", "main:app" , "--reload", "--host=0.0.0.0"]
 

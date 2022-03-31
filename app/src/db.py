@@ -3,7 +3,6 @@ import os
 from typing import Any
 
 from influxdb import InfluxDBClient
-from datetime import datetime
 
 
 def setupDb():
@@ -13,11 +12,11 @@ def setupDb():
     password = os.environ.get('INFLUXDB_ADMIN_PASSWORD', 'password')
 
     client = InfluxDBClient(host, 8086, user, password, 'db')
-    client.create_database('dbtemp')
+    client.create_database('db')
     client.get_list_database()  # show the existing databases
-    client.switch_database('dbtemp')
+    client.switch_database('db')
     client.create_retention_policy(
-        "tempRetention", duration="1h", replication=1, database='dbtemp', default=True)
+        "tempRetention", duration="1h", replication=1, database='db', default=True)
     return client
 
 

@@ -1,0 +1,7 @@
+fastapi==0.75.0
+fastapi_utils==0.2.1
+influxdb==5.3.1
+pydantic==1.9.0
+pyserial==3.5
+uvicorn==0.15.0
+python-multipart

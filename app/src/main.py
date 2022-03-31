@@ -5,15 +5,16 @@ from fastapi import FastAPI, UploadFile, File
 from serial_comm import PrinterManager, PrinterCommand
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import time
 
 
 app = FastAPI()
 
 
 class Command(BaseModel):
-    command:str
+    command: str
 
-#safer:
+# safer:
 # origins = [
 #     "http://localhost.tiangolo.com",
 #     "https://localhost.tiangolo.com",
@@ -21,10 +22,11 @@ class Command(BaseModel):
 #     "http://localhost:8080",
 # ]
 
+
 app.add_middleware(
     CORSMiddleware,
     # allow_origins=origins,
-    allow_origins=["*"],  # not safe
+    allow_origins=["*"],  # to allow from every origins, easier for debugging
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -33,20 +35,21 @@ app.add_middleware(
 
 pos = multiprocessing.Array("d", 3)
 p1 = PrinterManager()
-#s = p1.openConnection()
+
+
 t1 = threading.Thread(target=p1.manage_printer_thread_target, args=(
-    pos,), daemon=True) 
+    pos,), daemon=True)
+
+
 t1.start()
 
 
-
-@app.post("/cmd") 
-async def uploadCmdQueue(data:Command):
-    cmde=data.command
+@app.post("/cmd")
+async def uploadCmdQueue(data: Command):
+    cmde = data.command
     p1.qCmd.put(PrinterCommand(cmde))
     print(cmde)
     return {f"{cmde}": " Added To Queue Success"}
-
 
 
 @app.get("/advancement")
@@ -74,4 +77,4 @@ async def uploadGcode(file: UploadFile = File(...)):
         p1.paused = False
         return "Print will start after heating"
     else:
-        pass #or raise exception
+        print('Please upload a .gcode file')

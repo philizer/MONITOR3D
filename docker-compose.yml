@@ -1,24 +1,28 @@
 version: '3'
 
-
 volumes:
     monitor3d:
 
 services:
-    container1: 
+    container1:
         container_name: container1
-        # image: philibertdekerhalic/monitor3d #if image uploaded and not needed to be built
+        #image: philibertdekerhalic/monitor3d #if no modification on the built image
         build: ./app
         ports:
             #mapping ports
             - 8000:8000
         privileged: true
-        devices: 
-            - /dev:/dev
-        environment: 
+        # devices:
+        #     - /dev:/dev
+        environment:
             - INFLUXDB_HOST=influxdb
+            - INFLUXDB_ADMIN_PASSWORD=password
+            - INFLUXDB_ADMIN_USER=admin
             # INFLUXDB_HOST: influxdb
-    
+            - PYTHONUNBUFFERED=1
+        volumes:
+            - /dev:/dev
+
 
     influxdb:
         image: influxdb:1.6.4 #old image but works great
@@ -31,9 +35,11 @@ services:
             INFLUXDB_ADMIN_USER: "admin"
             INFLUXDB_ADMIN_PASSWORD: "password"
 
-        
         volumes:
             - monitor3d:/var/lib/influxdb:rw #volume direct on docker -> not on my pc
+
+        logging:
+            driver: none
 
     grafana:
         image: grafana/grafana:8.4.3
@@ -44,15 +50,18 @@ services:
             GF_SECURITY_ADMIN_USER: admin
             GF_SECURITY_ADMIN_PASSWORD: password
             GF_SECURITY_ALLOW_EMBEDDING: "true"
-            GF_AUTH_ANONYMOUS_ENABLED : "true"
-            GF_AUTH_ANONYMOUS_ORG_NAME : "Main Org."
-            GF_AUTH_ANONYMOUS_ORG_ROLE : "Admin"
-            GF_AUTH_BASIC_ENABLED : "false"
-            GF_AUTH_DISABLE_LOGIN_FORM : "true"
-            GF_AUTH_DISABLE_SIGNOUT_MENU : "true"
-            GF_AUTH_PROXY_ENABLED : "true"
-            GF_USERS_ALLOW_SIGN_UP= : "false"
+            GF_AUTH_ANONYMOUS_ENABLED: "true"
+            GF_AUTH_ANONYMOUS_ORG_NAME: "Main Org."
+            GF_AUTH_ANONYMOUS_ORG_ROLE: "Admin"
+            GF_AUTH_BASIC_ENABLED: "false"
+            GF_AUTH_DISABLE_LOGIN_FORM: "true"
+            GF_AUTH_DISABLE_SIGNOUT_MENU: "true"
+            GF_AUTH_PROXY_ENABLED: "true"
+            GF_USERS_ALLOW_SIGN_UP=: "false"
         volumes:
             - monitor3d:/var/lib/grafana:rw
         restart: always
- 
+
+        logging:
+            driver: none
+

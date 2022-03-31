@@ -1,0 +1,101 @@
+html, body{
+  height: 100%;
+  margin: 0px;
+}
+
+body{
+  font-family: Roboto;
+  background: rgb(223 225 227);
+  color: rgb(46, 52, 77);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1{
+  font-weight: 200;
+  text-align: center;
+  font-size: 4rem;
+  margin: 1rem;
+}
+
+main{
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  padding: 20px 0px;
+  justify-content: space-around;
+}
+#dashboard, iframe{
+  border-radius: 20px;
+}
+iframe{
+  width: 60vw;
+  border: 1px solid white;
+}
+
+hr{
+  width: 80%;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid lightgrey;
+  margin: 40px;
+  align-self: center;
+}
+
+#dashboard{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30vw;
+  background: white;
+  padding: 0px 40px;
+}
+
+form,
+.form {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input[type="file"]{
+  display: none;
+}
+
+#advancementValue, #positionValue{
+  font-weight: 500;
+}
+
+button, #fileLabel{
+  background: transparent;
+  border: 1px solid grey;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+button:hover, #fileLabel:hover, select:hover{
+  opacity: .5;
+}
+
+h3{
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+#fileForm span{
+padding: 4px 16px;
+border-radius: 100px;
+margin-left: 20px;
+font-style: italic;
+}
+
+select, button, #fileLabel{  
+  cursor: pointer;
+  transition: all .2s ease;
+  border-radius: 200px;
+  padding: 5px 15px;
+}

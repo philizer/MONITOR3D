@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>MONITOR3D Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <h1>MONITOR3D Dashboard</h1>
+    <main>
+        <div id="dashboard">
+            <form id="fileForm" method="POST" enctype="multipart/form-data">
+                <div style="display: flex">
+                    <label for="fileinput" id="fileLabel">choose file</label>
+                    <input id="fileinput" type="file" name="file">
+                    <span id="currentFile">No file chosen</span>
+                </div>
+                <button type="submit" role="button">send</button>
+            </form>
+
+            <hr>
+
+            <div class="form">
+                <select id="commandList" name="command">
+                    <option value="FLUSH_Q_RESET">FLUSH_Q_RESET</option>
+                    <!-- <option value="SET_CURRENT_PRINT">SET_CURRENT_PRINT</option> -->
+                    <option value="CANCEL_PRINT">CANCEL_PRINT</option>
+                    <!-- <option value="CANCEL_2PRINT">CANCEL_2PRINT</option> -->
+                    <!-- <option value="CANCEL_SD_PRINT">CANCEL_SD_PRINT</option> -->
+                    <option value="EMERGENCY_STOP">EMERGENCY_STOP</option>
+                    <option value="PAUSE_PRINT">PAUSE_PRINT</option>
+                    <option value="RESUME_PRINT">RESUME_PRINT</option>
+                    <option value="INITIALIZE_MONITORING">INITIALIZE_MONITORING</option>
+                    <option value="AUTO_HOME">AUTO_HOME</option>
+                    <option value="PAUSE_CHANGEF">PAUSE_CHANGEF</option>
+                    <option value="PREHEAT_PLA">PREHEAT_PLA</option>
+                    <option value="COOLDOWN">COOLDOWN</option>
+                    <option value="MOVE_X1">MOVE_X1</option>
+                    <option value="MOVE_X10">MOVE_X10</option>
+                    <option value="MOVE_X_1">MOVE_X_1</option>
+                    <option value="MOVE_X_10">MOVE_X_10</option>
+                    <option value="MOVE_Y1">MOVE_Y1</option>
+                    <option value="MOVE_Y10">MOVE_Y10</option>
+                    <option value="MOVE_Y_1">MOVE_Y_1</option>
+                    <option value="MOVE_Y_10">MOVE_Y_10</option>
+                    <option value="MOVE_Z1">MOVE_Z1</option>
+                    <option value="MOVE_Z10">MOVE_Z10</option>
+                    <option value="MOVE_Z_1">MOVE_Z_1</option>
+                    <option value="MOVE_Z_10">MOVE_Z_10</option>
+                </select>
+                <button id="commandBtn">send</button>
+            </div>
+
+            <hr>
+
+            <div class="form">
+                <button id="advancementBtn">start watching progress</button>
+                <div>
+                    <h3>PROGRESS - <span id="advancementValue">undefined</span></h3>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form">
+                <button id="positionBtn">start watching position</button>
+                <div>
+                    <h3>COORDINATES - <span id="positionValue">undefined</span></h3>
+                </div>
+            </div>
+
+        </div>
+
+         <iframe
+            src="http://127.0.0.1:3000/d-solo/YfS-ety7k/temperatures?orgId=1&kiosk=tv&refresh=5s&theme=light&panelId=2"
+            width="450" height="600" frameborder="0">
+
+        </iframe>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
