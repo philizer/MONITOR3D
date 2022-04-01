@@ -1,7 +1,8 @@
 # MONITOR3D
 A simple interface to monitor and control your 3D printer
 
-The software aims to monitor and control a printer remotely with a light, simple debugging, and user-friendly interface. 
+The software aims to monitor and control a printer remotely with a light, simple debugging, and user-friendly interface. It is easy to understand, modify and improve with new functions.
+
 For now, the software only works on Linux-based systems. Windows and Raspberry pi OS versions are comming.
 (Also, this software is optimized for PRUSA printers. A few modifications to the serial_comm.py file might be needed depending on your printer, for the temperature display.)
 
@@ -36,14 +37,16 @@ Run any command you like from the drop-down list.
 ### Print a model
 Slice a .stl model with your favourite slicer and uplad the .gcode file on the dashboard. Send it.
 You should now see in the terminal opended (step 3) the command sent to the printer. After heating and calibration, the print will start.
+To monitor the advancement and axis position (refreshed every 10 seconds), click on the related buttons.
 
+
+## Modify the software to your needs
+In the docker-compose.yml file, "monitor3d" docker image is loaded by default.
+To make modifications, comment the "image" field and uncomment the "build" field.
  
-## Adapt to your printer if it is not a PRUSA
+### Adapt to your printer if it is not a PRUSA
 
-```console
-$ 
-
-```
+Go to the serial_comm.py file and modify the "parseRcvTemp()" function according to the response of your printer to a "M105" Gcode command, and the "parseRcvXYZ()" function for a "M114" Gcode command.
 
 ### Requirements
 
