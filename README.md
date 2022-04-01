@@ -36,7 +36,7 @@ Run any command you like from the drop-down list.
 
 ### Print a model
 Slice a .stl model with your favourite slicer and uplad the .gcode file on the dashboard. Send it.
-You should now see in the terminal opended (step 3) the command sent to the printer. After heating and calibration, the print will start.
+You should now see in the terminal opended (step 3) the commands sent to the printer. After heating and calibration, the print will start.
 To monitor the advancement and axis position (refreshed every 10 seconds), click on the related buttons.
 
 
@@ -45,12 +45,15 @@ In the docker-compose.yml file, "monitor3d" docker image is loaded by default.
 To make modifications, comment the "image" field and uncomment the "build" field.
  
 ### Adapt to your printer if it is not a PRUSA
-
 Go to the serial_comm.py file and modify the "parseRcvTemp()" function according to the response of your printer to a "M105" Gcode command, and the "parseRcvXYZ()" function for a "M114" Gcode command.
 
 ### Requirements
+The software only runs on Linux-based systems for now.
+Docker and docker-compose are needed. 
+You can find the python libraries in the requirements.txt file.
 
 ## Upcomming
 Next steps of this project are: Unit testing, Windows and Raspberry pi OS versions.
 
 ## Bugs
+Sometimes the docker-compose might need to be relaunched if the interface is not used for a long time.
