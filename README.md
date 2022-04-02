@@ -7,7 +7,7 @@ For now, the software only works on Linux-based systems. Windows and Raspberry p
 (Also, this software is optimized for PRUSA printers. Depending on your printer, a few modifications to the serial_comm.py file might be needed for the temperature display. See the **Modify** section)
 
 ## Quickstart
-1) Install Docker and docker-compose according to the documentation (if not already installed).
+1) Install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) according to the documentation (if not already installed).
 2) Clone the Git repository.
 3) Go to the "MONITOR3D" file in a terminal window.
 4) Run the ```console docker-compose up ``` command.
@@ -52,7 +52,8 @@ Docker and docker-compose are needed.
 You can find the python libraries in the requirements.txt file.
 
 ## Upcoming
-The following steps of this project are Unit testing, Windows and Raspberry pi OS versions.
+The following steps of this project are : more Unit testing, Windows and Raspberry pi OS versions.
 
 ## Bugs
-Sometimes the docker-compose might need to be relaunched if the interface is not used for a long time.
+The docker-compose might need to be relaunched if the interface is not used for a long time.
+The displayed temperature can have a delay.
