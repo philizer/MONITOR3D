@@ -6,8 +6,8 @@ volumes:
 services:
     monitor3d:
         container_name: monitor3d
-        # image: philibertdekerhalic/monitor3d #if no modification on the built image
-        build: ./app
+        image: philibertdekerhalic/monitor3d #if no modification on the built image
+        # build: ./app
         ports:
             #mapping ports
             - 8000:8000
