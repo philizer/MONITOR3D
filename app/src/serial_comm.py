@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from datetime import datetime
 from enum import auto
 import db
 import serial
@@ -83,13 +84,6 @@ class PrinterManager:
 
         return s
 
-    def outputGcode(self, gcode: str) -> str:
-        print('SendingForOutput: ' + gcode)
-        self.s.write(gcode.encode() + '\n'.encode())
-        grbl_out = " "
-        grbl_out = self.s.readline()
-        return str(grbl_out.strip())
-
     def sendGcode(self, gcode: str):
         print('[DEBUG] [GCODE] out: ' + gcode),
         # Send g-code block to grbl
@@ -101,6 +95,7 @@ class PrinterManager:
             dictTemp = parseRcvTemp(grbl_string)
             print(dictTemp)
             storeToDb(dictTemp)
+            pass
         if grbl_string.find('X') == 2:
             dictXYZ = parseRcvXYZ(grbl_string)
             print(dictXYZ)
@@ -143,7 +138,7 @@ class PrinterManager:
             self.sendGcode('G1 Z15')
             self.sendGcode('G90 Z ')
 
-            self.qCmd.put(PrinterCommand.COOLDOWN)    
+            self.qCmd.put(PrinterCommand.COOLDOWN)
             self.current_print = None
             return True
 
@@ -283,8 +278,8 @@ class PrinterManager:
                         line = self.qFile.get()
                         self.sendGcode(line)
                         if self.qFile.empty():
-                            self.paused=False
-                            self.current_print=None
+                            self.paused = False
+                            self.current_print = None
             except serial.SerialException:
                 print("Printer not plugged")
                 self.s = self.openConnection()
@@ -313,7 +308,7 @@ def parseRcvTemp(rep: str) -> dict:
 
     tempBed = rep[indB+2:indSlashB-1]
     # tempGoalBed = rep[indSlashB+1:indA-1]  # for mini
-    tempGoalBed = rep[indSlashB+1:indSlashB+4]  # for mk3S (and mini)
+    tempGoalBed = rep[indSlashB+1:indSlashB+4]  # for MK3 and mini
 
     tempAir = rep[indA+2:indSlashA-1]
 
@@ -349,7 +344,7 @@ def remove_comment(string):
 
 
 def storeToDb(dictTemp: dict):
-    """uses the db.py function to store the parsed temp into the db
+    """uses the db.py file to store the parsed temp into the db
 
     Args:
         dictTemp (dict): parsed dictionary (temps)

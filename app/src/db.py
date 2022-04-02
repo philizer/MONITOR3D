@@ -16,7 +16,7 @@ def setupDb():
     client.get_list_database()  # show the existing databases
     client.switch_database('db')
     client.create_retention_policy(
-        "tempRetention", duration="1h", replication=1, database='db', default=True)
+        "temperatureRetention", duration="1d", replication=1, database='db', default=True)
     return client
 
 
