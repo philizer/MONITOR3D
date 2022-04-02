@@ -12,13 +12,11 @@ services:
             #mapping ports
             - 8000:8000
         privileged: true
-        # devices:
-        #     - /dev:/dev
+        
         environment:
             - INFLUXDB_HOST=influxdb
             - INFLUXDB_ADMIN_PASSWORD=password
             - INFLUXDB_ADMIN_USER=admin
-            # INFLUXDB_HOST: influxdb
             - PYTHONUNBUFFERED=1
         volumes:
             - /dev:/dev
