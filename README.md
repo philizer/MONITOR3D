@@ -10,7 +10,7 @@ For now, the software only works on Linux-based systems. Windows and Raspberry p
 1) Install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) according to the documentation (if not already installed).
 2) Clone the Git repository.
 3) Go to the "MONITOR3D" file in a terminal window.
-4) Run the ```console docker-compose up ``` command.
+4) Run the ```docker-compose up ``` command.
 5) Plug the 3D printer into a USB port.
 6) Open the "index.html" file in a web browser. Let's fix the "Page not found" error.
 7) In your browser, open a window and go to http://localhost:3000 (Grafana interface).
