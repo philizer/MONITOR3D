@@ -28,7 +28,7 @@ For now, the software only works on Linux-based systems. Windows and Raspberry p
 11) The temperature of your printer should log on the graph.
 12) Name the panel if you want, set the time range to "Last 5 min", apply and save changes.
 13) Click on the name of the panel > Share > Embed > uncheck the "Current time range" and copy the link.
-14) Open the index.html file in a code editor and replace the <iframe> HTML tag with the copied one. Save the file.
+14) Open the index.html file in a code editor and replace the <iframe> HTML tag with the copied one. Adjust the height to 500  and save the file.
 15) Refresh the dashboard. You should now see the temperature graph.
  
 ### Commands
