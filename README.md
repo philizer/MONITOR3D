@@ -24,7 +24,7 @@ For now, the software only works on Linux-based systems. Windows and Raspberry p
 - User: admin
 - Password: password
 - Click Save and test
-10) Create a new dashboard: Create > Dashboard > Add a new panel > New query: SELECT * FROM data
+10) Create a new dashboard: Create > Dashboard > Add a new panel > select InfluxDB data source > New query: SELECT * FROM data
 11) The temperature of your printer should log on the graph.
 12) Name the panel if you want, set the time range to "Last 5 min", apply and save changes.
 13) Click on the name of the panel > Share > Embed > uncheck the "Current time range" and copy the link.
