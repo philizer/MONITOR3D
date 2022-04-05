@@ -30,6 +30,7 @@ For now, the software only works on Linux-based systems. Windows and Raspberry p
 13) Click on the name of the panel > Share > Embed > uncheck the "Current time range" and copy the link.
 14) Open the index.html file in a code editor and replace the <iframe> HTML tag with the copied one. Adjust the height to 500  and save the file.
 15) Refresh the dashboard. You should now see the temperature graph.
+16) When you are done using MONITOR3D, stop the containers (Ctrl + C) from the terminal and run a ``` docker-compose down ``` command to make sure containers stop running on your machine.
  
 ### Commands
 Run any command you like from the drop-down list.
