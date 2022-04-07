@@ -8,8 +8,11 @@ For now, the software only works on Linux-based systems. Windows and Raspberry p
 
 A [tutorial](https://www.youtube.com/watch?v=V1cLmPeHNd4) is available on youtube!
 
+<p align="center">
+
 [![Watch the video](https://dvic.devinci.fr/api/v3/img/thumbnail/grrwnazcdtnv0ai3cxyjpxj0vav8s0.JPG)](https://www.youtube.com/watch?v=V1cLmPeHNd4)
 
+</p>
 
 ## Quickstart
 1) Install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) according to the documentation (if not already installed).
