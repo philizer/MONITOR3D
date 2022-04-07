@@ -7,7 +7,9 @@ For now, the software only works on Linux-based systems. Windows and Raspberry p
 (Also, this software is optimized for PRUSA printers. Depending on your printer, a few modifications to the serial_comm.py file might be needed for the temperature display. See the **Modify** section)
 
 A [tutorial](https://www.youtube.com/watch?v=V1cLmPeHNd4) is available on youtube!
-[<img src="https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=Hc79sDi3f0U "Now in Android: 55")
+
+[![Watch the video]()](https://www.youtube.com/watch?v=V1cLmPeHNd4)
+
 
 ## Quickstart
 1) Install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) according to the documentation (if not already installed).
