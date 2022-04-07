@@ -1,10 +1,17 @@
 # MONITOR3D
+@[split](2,begin)
 A simple interface to monitor and control your 3D printer
 
 The software aims to monitor and control a printer remotely with a light, simple debugging and user-friendly interface. It is easy to understand, modify and improve with new functions.
 
 For now, the software only works on Linux-based systems. Windows and Raspberry pi OS versions are coming.
 (Also, this software is optimized for PRUSA printers. Depending on your printer, a few modifications to the serial_comm.py file might be needed for the temperature display. See the **Modify** section)
+
+@[split](2,break)
+
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=V1cLmPeHNd4)
+
+@[split](2,end)
 
 ## Quickstart
 1) Install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) according to the documentation (if not already installed).
