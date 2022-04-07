@@ -8,7 +8,7 @@ For now, the software only works on Linux-based systems. Windows and Raspberry p
 
 A [tutorial](https://www.youtube.com/watch?v=V1cLmPeHNd4) is available on youtube!
 
-[![Watch the video]()](https://www.youtube.com/watch?v=V1cLmPeHNd4)
+[![Watch the video](https://dvic.devinci.fr/api/v3/img/thumbnail/grrwnazcdtnv0ai3cxyjpxj0vav8s0.JPG)](https://www.youtube.com/watch?v=V1cLmPeHNd4)
 
 
 ## Quickstart
